@@ -12,5 +12,16 @@
 */
 
 Route::group(['prefix'=>'admin', 'as'=>'admin.'], function () {
-    Route::resource('categories', 'Admin\CategoriesController', ['only'=>['index', 'store', 'destroy']]);
+    Route::resource('categories',
+        'Admin\CategoriesController',
+        ['only'=>['index', 'store', 'destroy']]);
+
+    Route::resource('products',
+        'Admin\ProductsController',
+        ['only'=>['index', 'store', 'destroy']]);
+
+    Route::post('products/toggle-availability',
+        'Admin\ProductsController@toggleAvailability')
+        ->name('admin.products.toggle');
 });
+
