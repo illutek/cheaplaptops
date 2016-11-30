@@ -8,11 +8,6 @@ class Category extends Model
 {
     protected $fillable = ['name'];
 
-    public static function lists($string, $string1)
-    {
-        return [];
-    }
-
     public function products() {
         return $this->hasMany(Product::class);
     }

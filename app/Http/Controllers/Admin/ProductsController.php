@@ -15,8 +15,8 @@ class ProductsController extends Controller
 
         return view('admin.products.index')
             ->with('products', Product::all())
-            ->with('categories', Category::lists('name', 'id'));
-
+            //->with('categories', Category::lists('name', 'id'));
+            ->with('categories', Category::all()->pluck('name', 'id'));
     }
 
     public function store(SaveProductRequest $request){
