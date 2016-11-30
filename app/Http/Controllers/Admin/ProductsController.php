@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Http\Requests\SaveProductRequest;
 use App\Product;
-use Faker\Provider\Image;
+//use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductsController extends Controller
 {
@@ -51,7 +52,12 @@ class ProductsController extends Controller
 
     }
 
-    public function toggleAvailability(){
+    public function toggleAvailability(Request $request){
 
+        $product = Product::findOrFail($request->get('id'));
+        $product->availability = $request->get('availability');
+        $product->save();
+
+        return redirect(route('admin.products.index'))->with('message', 'Product Updated');
     }
 }

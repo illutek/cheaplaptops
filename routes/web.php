@@ -22,6 +22,6 @@ Route::group(['prefix'=>'admin', 'as'=>'admin.'], function () {
 
     Route::post('products/toggle-availability',
         'Admin\ProductsController@toggleAvailability')
-        ->name('admin.products.toggle');
+        ->name('products.toggle');
 });
 

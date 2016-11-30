@@ -15,6 +15,8 @@
                     <li>
                         <img src="{{ asset($product->image) }}" alt="{{ $product->title }}" width="50">
                         {{ $product->title }} -
+
+                        {{-- Delete form --}}
                         {!! Form::open([
                             'route'=>['admin.products.destroy', $product->id],
                             'method'=>'delete',
@@ -23,6 +25,7 @@
                         {!! Form::submit('delete') !!}
                         {!! Form::close() !!} -
 
+                        {{-- Availability form --}}
                         {!! Form::open([
                             'route'=>['admin.products.toggle', $product->id],
                             'class'=>'form-inline',
