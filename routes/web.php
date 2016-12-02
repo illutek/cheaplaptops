@@ -25,3 +25,9 @@ Route::group(['prefix'=>'admin', 'as'=>'admin.'], function () {
         ->name('products.toggle');
 });
 
+Route::get('/', 'StoreController@index')
+    ->name('store.index');
+Route::get('product/{id}', 'StoreController@show')
+    ->name('store.show');
+
+Route::get('category/{id}', ['as' => 'store.category', 'uses'=>'StoreController@category']);

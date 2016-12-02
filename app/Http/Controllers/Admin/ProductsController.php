@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Http\Requests\SaveProductRequest;
 use App\Product;
-//use Faker\Provider\Image;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
+
+
+//use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductsController extends Controller
 {
@@ -43,7 +47,7 @@ class ProductsController extends Controller
 
     public function destroy($id){
 
-        $product = Product::finfOrFail($id);
+        $product = Product::findOrFail($id);
 
         File::delete(public_path($product->image));
         $product->delete();

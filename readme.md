@@ -38,3 +38,58 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+
+
+##Opmerkingen voor de les 2016-12-01
+
+###De lists function is vanaf 5.3 vervangen door pluck  
+
+Volgende
+```
+->with('categories', Category::lists('name', 'id'));
+```
+Wordt dit
+```
+->with('categories', Category::all()->pluck('name', 'id'));
+```
+http://laravel-tricks.com/tricks/easy-dropdowns-with-eloquents-lists-method
+
+###De make function voor de image geeft ook een probleem  
+
+Volgende vervangen 
+```
+use Faker\Provider\Image;
+```
+
+Door  
+```
+use Intervention\Image\ImageManagerStatic as Image;
+```
+###Route admin.products.toggle fout
+
+De route aangepast van  
+```
+->name('admin.products.toggle');
+```
+Naar 
+```
+->name('products.toggle');
+``` 
+Door de Route::group prefix wordt admin 2 keer toegevoegd
+
+###Delete probleem
+```
+File::delete(public_path($product->image));
+```
+Geeft volgende fout  
+Call to undefined method phpDocumentor\Reflection\File::delete()
+
+
+
+
+
+
+###Extra IDE-helper
+https://github.com/barryvdh/laravel-ide-helper
+
+
