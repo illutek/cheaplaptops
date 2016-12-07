@@ -52,26 +52,45 @@
             </nav>
 
             <div id="search-form">
-                <form action="#" method="get">
-                    <input type="search" name="search" placeholder="Search by keyword" class="search">
-                    <input type="submit" value="Search" class="search submit">
-                </form>
+                {!! Form::open(['route'=>'store.search', 'method'=>'get'])!!}
+                {!! Form::text('keyword', null, ['placeholder'=>'Search by keyword', 'class'=>'search']) !!}
+                {!! Form::submit('Search', ['class'=>'search submit']) !!}
+                {!! Form::close() !!}
+
             </div><!-- end search-form -->
 
             <div id="user-menu">
+                @if(!auth()->check())
+                    <nav id="signin" class="dropdown">
+                        <ul>
+                            <li>
+                                <a href="#"><img src="{{ asset('img/user-icon.gif') }}" alt="Sign In"/> Sign In <img
+                                            src="{{ asset('img/down-arrow.gif') }}" alt="Sign In"/></a>
+                                <ul>
+                                    <li><a href="{{ route('loginform') }}">Sign In</a></li>
+                                    {{--<li><a href="{{ route('registerform') }}">Sign Up</a></li>--}}
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                @else
+                    <nav class="dorpdown">
 
-                <nav id="signin" class="dropdown">
-                    <ul>
-                        <li>
-                            <a href="#"><img src="{{ asset('img/user-icon.gif') }}" alt="Sign In"/> Sign In <img
-                                        src="{{ asset('img/down-arrow.gif') }}" alt="Sign In"/></a>
-                            <ul>
-                                <li><a href="#">Sign In</a></li>
-                                <li><a href="#">Sign Up</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
+                        <ul>
+                            <li><a href="#"><img src="{{ asset('img/user-icon.gif') }}"
+                                                 alt="{{ auth()->present()->fullName }}"/>
+                                </a>{{ auth()->present()->fullName }} <img src="{{ asset('img/down-arrow.gif') }}"
+                                                                           alt="{{ auth()->present()->fullName }}">
+                            </li>
+                            <li>
+                                <a href="#">Order History</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('logout') }}">Sign Out</a>
+                            </li>
+                        </ul>
+                    </nav>
+            @endif
 
             <!--
                 <nav class="dropdown">
@@ -94,6 +113,8 @@
     </header>
 
     @yield('promo')
+
+    @yield('search-keyword')
 
     <hr/>
 
@@ -121,9 +142,12 @@
             <div id="my-account">
                 <h4>MY ACCOUNT</h4>
                 <ul>
-                    <li><a href="#">Sign In</a></li>
-                    <li><a href="#">Sign Up</a></li>
-                    <li><a href="#">Order History</a></li>
+                    @if(!auth()->check())
+                        <li><a href="{{ route('loginform') }}">Sign In</a></li>
+                        {{--<li><a href="{{ route('registerform') }}">Sign Up</a></li>--}}
+                    @else
+                        <li><a href="#">Order History</a></li>
+                    @endif
                     <li><a href="#">Shopping Cart</a></li>
                 </ul>
             </div><!-- end my-account -->

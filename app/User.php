@@ -2,11 +2,16 @@
 
 namespace App;
 
+use App\Presenters\UserPresenter;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laracasts\Presenter\PresentableTrait;
 
 class User extends Authenticatable
 {
+    use PresentableTrait;
+    protected $presenter = UserPresenter::class;
+
     use Notifiable;
 
     /**
@@ -15,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'firstname', 'lastname', 'telephone', 'email', 'password',
     ];
 
     /**
