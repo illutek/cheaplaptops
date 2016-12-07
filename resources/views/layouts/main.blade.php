@@ -68,42 +68,26 @@
                                             src="{{ asset('img/down-arrow.gif') }}" alt="Sign In"/></a>
                                 <ul>
                                     <li><a href="{{ route('loginform') }}">Sign In</a></li>
-                                    {{--<li><a href="{{ route('registerform') }}">Sign Up</a></li>--}}
+                                    <li><a href="{{ route('register') }}">Sign Up</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </nav>
                 @else
-                    <nav class="dorpdown">
-
+                    <nav class="dropdown">
                         <ul>
-                            <li><a href="#"><img src="{{ asset('img/user-icon.gif') }}"
-                                                 alt="{{ auth()->present()->fullName }}"/>
-                                </a>{{ auth()->present()->fullName }} <img src="{{ asset('img/down-arrow.gif') }}"
-                                                                           alt="{{ auth()->present()->fullName }}">
-                            </li>
                             <li>
-                                <a href="#">Order History</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('logout') }}">Sign Out</a>
+                                <a href="#"><img src="{{ asset('img/user-icon.gif') }}" alt="{{ auth()->user()->present()->fullName }}"/> {{ auth()->user()->present()->fullName }} <img
+                                            src="{{ asset('img/down-arrow.gif') }}" alt="{{ auth()->user()->present()->fullName }}"/></a>
+                                <ul>
+                                    <li><a href="{{ route('logout') }}">Sign out</a></li>
+                                    <li><a href="#">Orders</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </nav>
             @endif
 
-            <!--
-                <nav class="dropdown">
-                    <ul>
-                        <li>
-                            <a href="#"><img src="{{ asset('img/user-icon.gif') }}" alt="Andrew Perkins" /> Andrew Perkins <img src="{{ asset('img/down-arrow.gif') }}" alt="Andrew Perkins" /></a>
-                            <ul>
-                                <li><a href="#">Order History</a></li>
-                                <li><a href="#">Sign Out</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>-->
             </div><!-- end user-menu -->
 
             <div id="view-cart">
@@ -144,7 +128,7 @@
                 <ul>
                     @if(!auth()->check())
                         <li><a href="{{ route('loginform') }}">Sign In</a></li>
-                        {{--<li><a href="{{ route('registerform') }}">Sign Up</a></li>--}}
+                        <li><a href="{{ route('register') }}">Sign Up</a></li>
                     @else
                         <li><a href="#">Order History</a></li>
                     @endif

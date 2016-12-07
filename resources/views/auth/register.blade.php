@@ -24,10 +24,6 @@
         {!! Form::password('password') !!}
     </p>
     <p>
-        {!! Form::label('firstname') !!}
-        {!! Form::text('firstname') !!}
-    </p>
-    <p>
         {!! Form::label('password_confirmation') !!}
         {!! Form::password('password_confirmation') !!}
     </p>

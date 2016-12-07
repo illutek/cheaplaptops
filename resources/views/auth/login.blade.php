@@ -26,6 +26,6 @@
         <h2>I'm a new customer</h2>
         <h3>You can create an account in just a few simple steps <br>
         Click below to begin.</h3>
-        <a href="{{-- route('registerform') --}}" class="default-btn">Create a new account</a>
+        <a href="{{ route('register') }}" class="default-btn">Create a new account</a>
     </section>
 @endsection
