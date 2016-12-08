@@ -11,7 +11,7 @@
 |
 */
 // Admin Routes
-Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware'=>['auth']], function () {
+Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware'=>['auth', 'auth.admin']], function () {
     Route::resource('categories',
         'Admin\CategoriesController',
         ['only'=>['index', 'store', 'destroy']]);
