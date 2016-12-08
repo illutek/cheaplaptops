@@ -43,6 +43,7 @@
                         <a href="#">Shop by Category <img src="{{ asset('img/down-arrow.gif') }}"
                                                           alt="Shop by Category"/></a>
                         <ul>
+                            {{--$catnav komt van AppServiceProvider.php de function boot--}}
                             @foreach($catnav as $cat)
                                 <li><a href="{{ route('store.category', $cat->id) }}">{{ $cat->name }}</a></li>
                             @endforeach
@@ -53,8 +54,8 @@
 
             <div id="search-form">
                 {!! Form::open(['route'=>'store.search', 'method'=>'get'])!!}
-                {!! Form::text('keyword', null, ['placeholder'=>'Search by keyword', 'class'=>'search']) !!}
-                {!! Form::submit('Search', ['class'=>'search submit']) !!}
+                    {!! Form::text('keyword', null, ['placeholder'=>'Search by keyword', 'class'=>'search']) !!}
+                    {!! Form::submit('Search', ['class'=>'search submit']) !!}
                 {!! Form::close() !!}
 
             </div><!-- end search-form -->
@@ -64,7 +65,7 @@
                     <nav id="signin" class="dropdown">
                         <ul>
                             <li>
-                                <a href="#"><img src="{{ asset('img/user-icon.gif') }}" alt="Sign In"/> Sign In <img
+                                <a href="{{ route('loginform') }}"><img src="{{ asset('img/user-icon.gif') }}" alt="Sign In"/> Sign In <img
                                             src="{{ asset('img/down-arrow.gif') }}" alt="Sign In"/></a>
                                 <ul>
                                     <li><a href="{{ route('loginform') }}">Sign In</a></li>

@@ -11,7 +11,7 @@
 |
 */
 // Admin Routes
-Route::group(['prefix'=>'admin', 'as'=>'admin.'], function () {
+Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware'=>['auth']], function () {
     Route::resource('categories',
         'Admin\CategoriesController',
         ['only'=>['index', 'store', 'destroy']]);
@@ -39,9 +39,14 @@ Route::get('search', 'StoreController@search')->name('store.search');
 
 
 // Authentication Routes
-Route::get('login', ['as'=>'loginform', 'uses'=>'Auth\LoginController@showLoginForm']);
-Route::post('login', ['as'=>'login', 'uses'=>'Auth\LoginController@login']);
-Route::get('logout', ['as'=>'logout', 'uses'=>'Auth\LoginController@logout']);
+//Route::post('login', ['as'=>'login', 'uses'=>'Auth\LoginController@login']);
+//Route::get('logout', ['as'=>'logout', 'uses'=>'Auth\LoginController@logout']);
+//Route::get('login', ['as'=>'loginform', 'uses'=>'Auth\LoginController@showLoginForm']);
+
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('loginform');
+Route::post('login', 'Auth\LoginController@login')->name('login');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
 
 // Registration Routes
 Route::get('register', ['as'=>'registerfrom', 'uses'=>'Auth\RegisterController@showRegistrationForm']);

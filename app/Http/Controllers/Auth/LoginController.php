@@ -34,6 +34,8 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        $this->redirectTo = route('store.index');
+        $this->redirectAfterLogout = route('login');
         $this->middleware('guest', ['except' => 'logout']);
     }
 }

@@ -8,6 +8,7 @@ class UsersTableSeeder extends Seeder
      * Run the database seeds.
      *
      * @return void
+     * Aanmaken van een admin user
      */
     public function run()
     {
