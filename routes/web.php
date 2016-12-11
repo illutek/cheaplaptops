@@ -33,6 +33,8 @@ Route::get('product/{id}', 'StoreController@show')
 
 Route::get('category/{id}', ['as' => 'store.category', 'uses'=>'StoreController@category']);
 
+Route::get('contact', 'StoreController@contact')->name('store.contact');
+
 // Search
 Route::get('search', 'StoreController@search')->name('store.search');
 

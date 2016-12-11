@@ -29,4 +29,8 @@ class StoreController extends Controller
             ->with('products', Product::where('title', 'LIKE', '%' . $keyword . '%')->get())
             ->with('keyword', $keyword);
     }
+
+    public function contact(){
+        return view('store.contact');
+    }
 }

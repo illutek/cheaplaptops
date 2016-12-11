@@ -142,7 +142,7 @@
                     @else
                         <li><a href="#">Order History</a></li>
                     @endif
-                    <li><a href="#">Shopping Cart</a></li>
+                    <li><a href="{{ route('store.cart') }}">Shopping Cart</a></li>
                 </ul>
             </div><!-- end my-account -->
             <div id="info">
@@ -156,7 +156,7 @@
                 <h4>EXTRAS</h4>
                 <ul>
                     <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="{{ route('store.contact') }}">Contact Us</a></li>
                 </ul>
             </div><!-- end extras -->
         </section><!-- end links -->

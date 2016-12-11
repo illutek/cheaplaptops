@@ -515,6 +515,9 @@ header a:link, header a:visited {
     width: 200px;
     vertical-align: top;
 }
+.product__description {
+    min-height: 100px;
+}
 
 #listings .product {
     margin-bottom: 30px;
