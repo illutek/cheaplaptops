@@ -8,11 +8,15 @@
 
     @if($product->availability)
         <p>
-            <a href="#" class="cart-btn">
-                <span class="price">€ {{ $product->price }}</span>
-                <img src="{{asset('img/white-cart.gif')}}" alt="Add to cart">
-                Add To Cart
-            </a>
+            {!! Form::open(['route'=>'store.cart.add'])!!}
+                {!! Form::hidden('quantity', 1) !!}
+                {!! Form::hidden('id', $product->id) !!}
+                <button type="submit" class="cart-btn">
+                    <span class="price">${{ $product->price }}</span>
+                    <img src="{{asset('img/white-cart.gif')}}" alt="Add to cart">
+                    Add To Cart
+            </button>
+            {!! Form::close() !!}
         </p>
     @endif
 </div>

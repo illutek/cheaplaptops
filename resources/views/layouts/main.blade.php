@@ -54,8 +54,8 @@
 
             <div id="search-form">
                 {!! Form::open(['route'=>'store.search', 'method'=>'get'])!!}
-                    {!! Form::text('keyword', null, ['placeholder'=>'Search by keyword', 'class'=>'search']) !!}
-                    {!! Form::submit('Search', ['class'=>'search submit']) !!}
+                {!! Form::text('keyword', null, ['placeholder'=>'Search by keyword', 'class'=>'search']) !!}
+                {!! Form::submit('Search', ['class'=>'search submit']) !!}
                 {!! Form::close() !!}
 
             </div><!-- end search-form -->
@@ -65,7 +65,8 @@
                     <nav id="signin" class="dropdown">
                         <ul>
                             <li>
-                                <a href="{{ route('loginform') }}"><img src="{{ asset('img/user-icon.gif') }}" alt="Sign In"/> Sign In <img
+                                <a href="{{ route('loginform') }}"><img src="{{ asset('img/user-icon.gif') }}"
+                                                                        alt="Sign In"/> Sign In <img
                                             src="{{ asset('img/down-arrow.gif') }}" alt="Sign In"/></a>
                                 <ul>
                                     <li><a href="{{ route('loginform') }}">Sign In</a></li>
@@ -78,21 +79,29 @@
                     <nav class="dropdown">
                         <ul>
                             <li>
-                                <a href="#"><img src="{{ asset('img/user-icon.gif') }}" alt="{{ auth()->user()->present()->fullName }}"/> {{ auth()->user()->present()->fullName }} <img
-                                            src="{{ asset('img/down-arrow.gif') }}" alt="{{ auth()->user()->present()->fullName }}"/></a>
+                                <a href="#"><img src="{{ asset('img/user-icon.gif') }}"
+                                                 alt="{{ auth()->user()->present()->fullName }}"/> {{ auth()->user()->present()->fullName }}
+                                    <img
+                                            src="{{ asset('img/down-arrow.gif') }}"
+                                            alt="{{ auth()->user()->present()->fullName }}"/></a>
                                 <ul>
+                                    <li><a href="#">Order History</a></li>
+                                    @if(auth()->user()->admin)
+                                        <li><a href="{{ route('admin.categories.index') }}">Manage Categories</a></li>
+                                        <li><a href="{{ route('admin.products.index') }}">Manage Products</a></li>
+                                    @endif
                                     <li><a href="{{ route('logout') }}">Sign out</a></li>
-                                    <li><a href="#">Orders</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </nav>
-            @endif
+                @endif
 
             </div><!-- end user-menu -->
 
             <div id="view-cart">
-                <a href="#"><img src="{{ asset('img/blue-cart.gif') }}" alt="View Cart"> View Cart</a>
+                <a href="{{ route('store.cart') }}"><img src="{{ asset('img/blue-cart.gif') }}" alt="View Cart"> View
+                    Cart</a>
             </div><!-- end view-cart -->
         </section><!-- end action-bar -->
     </header>

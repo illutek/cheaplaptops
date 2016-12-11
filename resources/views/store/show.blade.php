@@ -9,14 +9,16 @@
         <p>{{ $product->description }}</p>
         <hr>
         @if($product->availability)
-            <form action="#" method="post">
-                <label for="qty">Qty</label>
-                <input type="text" id="qty" value="1" maxlength="2">
-
-                <button type="submit" class="secondary-cart-btn">
-                    <img src="{{ asset('img/white-cart.gif') }}" alt="Add to Cart"> ADD TO CART
-                </button>
-            </form>
+            {!! Form::open(['route'=>'store.cart.add'])!!}
+            {!! Form::hidden('id', $product->id) !!}
+            {!! Form::label('quantity', 'Qty') !!}
+            {!! Form::text('quantity', 1, ['maxLength'=>2]) !!}
+            <button type="submit" class="cart-btn">
+                <span class="price">${{ $product->price }}</span>
+                <img src="{{asset('img/white-cart.gif')}}" alt="Add to cart">
+                Add To Cart
+            </button>
+            {!! Form::close() !!}
         @else
             <p class="outofstock">
                 This item is not available

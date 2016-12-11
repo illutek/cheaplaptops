@@ -27,8 +27,7 @@ Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware'=>['auth', 'auth.ad
 
 
 // Store Routes
-Route::get('/', 'StoreController@index')
-    ->name('store.index');
+Route::get('/', 'StoreController@index')->name('store.index');
 Route::get('product/{id}', 'StoreController@show')
     ->name('store.show');
 
@@ -51,4 +50,10 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 // Registration Routes
 Route::get('register', ['as'=>'registerfrom', 'uses'=>'Auth\RegisterController@showRegistrationForm']);
 Route::post('register', ['as'=>'register', 'uses'=>'Auth\RegisterController@register']);
+
+//Cart Routes
+Route::get('cart', 'CartController@cart')->name('store.cart');
+Route::post('cart', 'CartController@addToCart')->name('store.cart.add');
+Route::put('cart', 'CartController@updateCart')->name('store.cart.update');
+Route::delete('cart', 'CartController@removeFromCart')->name('store.cart.remove');
 

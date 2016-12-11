@@ -15,10 +15,9 @@ class OnlyAdmin
      */
     public function handle($request, Closure $next)
     {
-//        if (auth()->check() and auth()->user()->admin) {
+        if (auth()->check() && auth()->user()->admin) {
            return $next($request);
-//        }
-//
-//        return redirect(route('store.index'));
+        }
+        return redirect(route('store.index'));
     }
 }
