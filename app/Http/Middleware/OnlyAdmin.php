@@ -18,6 +18,6 @@ class OnlyAdmin
         if (auth()->check() && auth()->user()->admin) {
            return $next($request);
         }
-        return redirect(route('store.index'));
+        return redirect(route('loginform'));
     }
 }

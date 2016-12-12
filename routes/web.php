@@ -27,7 +27,11 @@ Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware'=>['auth', 'auth.ad
 
 
 // Store Routes
-Route::get('/', 'StoreController@index')->name('store.index');
+Route::get('/', 'StoreController@index')
+    ->name('store.index');
+    // onderstaande toevoegen om de store.index te beveiligen
+    //->middleware('auth', 'auth.admin');
+
 Route::get('product/{id}', 'StoreController@show')
     ->name('store.show');
 

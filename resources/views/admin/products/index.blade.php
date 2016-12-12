@@ -9,42 +9,42 @@
         </p>
         <h2>Products</h2>
         <hr>
-        @if(count($products))
-            <ul>
-                @foreach($products as $product)
-                    <li>
-                        <img src="{{ asset($product->image) }}" alt="{{ $product->title }}" width="50">
-                        {{ $product->title }} -
 
-                        {{-- Delete form --}}
-                        {!! Form::open([
-                            'route'=>['admin.products.destroy', $product->id],
-                            'method'=>'delete',
-                            'class'=>'form-inline'
-                        ]) !!}
-                        {!! Form::submit('delete') !!}
-                        {!! Form::close() !!} -
+        <ul>
+            @forelse($products as $product)
+                <li>
+                    <img src="{{ asset($product->image) }}" alt="{{ $product->title }}" width="50">
+                    {{ $product->title }} -
 
-                        {{-- Availability form --}}
-                        {!! Form::open([
-                            'route'=>['admin.products.toggle', $product->id],
-                            'class'=>'form-inline',
-                            'method'=>'post',
-                        ]) !!}
-                        {!! Form::hidden('id', $product->id) !!}
-                        {!! Form::select('availability', [
-                            '1' => 'In Stock',
-                            '0' => 'Out of stock'
-                        ], $product->availability) !!}
+                    {{-- Delete form --}}
+                    {!! Form::open([
+                        'route'=>['admin.products.destroy', $product->id],
+                        'method'=>'delete',
+                        'class'=>'form-inline'
+                    ]) !!}
+                    {!! Form::submit('delete') !!}
+                    {!! Form::close() !!} -
 
-                        {!! Form::submit('Update') !!}
-                        {!! Form::close() !!}
-                    </li>
-                @endforeach
-            </ul>
-        @else
-            <p>There arr no products yet.</p>
-        @endif
+                    {{-- Availability form --}}
+                    {!! Form::open([
+                        'route'=>['admin.products.toggle', $product->id],
+                        'class'=>'form-inline',
+                        'method'=>'post',
+                    ]) !!}
+                    {!! Form::hidden('id', $product->id) !!}
+                    {!! Form::select('availability', [
+                        '1' => 'In Stock',
+                        '0' => 'Out of stock'
+                    ], $product->availability) !!}
+
+                    {!! Form::submit('Update') !!}
+                    {!! Form::close() !!}
+                </li>
+            @empty
+                <p>There arr no products yet.</p>
+            @endforelse
+        </ul>
+
         <h2>Create a new product</h2>
         <hr>
         @include('shared.errors')

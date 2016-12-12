@@ -82,12 +82,24 @@ Door de Route::group prefix wordt admin 2 keer toegevoegd
 File::delete(public_path($product->image));
 ```
 Geeft volgende fout  
-Call to undefined method phpDocumentor\Reflection\File::delete()
+Call to undefined method phpDocumentor\Reflection\File::delete() -> opgelost geen idee meer hoe
 
+###forelse
+Op admin/products/index.blade.php de forelse gebruikt ipv if en foreach
+```
+@if(count($products))
+  <ul>
+    @foreach($products as $product)
+```
+```
+@forelse($products as $product)
 
+@empty
 
+@endforelse
+```
 
-
+                
 
 ###Extra IDE-helper
 https://github.com/barryvdh/laravel-ide-helper
